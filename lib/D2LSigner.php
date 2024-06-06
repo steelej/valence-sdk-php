@@ -34,7 +34,7 @@ class D2LSigner {
      * @return string Hash signature.
      */
     static function getBase64HashString($key, $data) {
-        $return = hash_hmac('sha256', utf8_encode($data), utf8_encode($key), true);
+        $return = hash_hmac('sha256', mb_convert_encoding($data, 'UTF-8', 'ISO-8859-1'), mb_convert_encoding($key,'UTF-8', 'ISO-8859-1'), true);
         $return = base64_encode($return);
 
         $return = str_replace('=', '', $return);
